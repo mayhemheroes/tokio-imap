@@ -1,0 +1,7 @@
+project: tokio-imap
+target: utf8-parse-response
+
+cmds:
+  - cmd: /utf8_parse_response
+  - cmd: /utf8_parse_response_no_inst @@
+    libfuzzer: false
