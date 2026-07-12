@@ -1,0 +1,14 @@
+project: tokio-imap
+# Parity with the fork's old mayhem/utf8_parse_response.mayhemfile — SAME target slug
+# `utf8-parse-response` and same harness code path (imap_proto::Response::from_bytes).
+# Now the instrumented libFuzzer binary built from the additive mayhem/fuzz/ crate.
+target: utf8-parse-response
+
+cmds:
+  # libFuzzer target: Mayhem drives inputs through the libFuzzer entrypoint, so NO '@@'.
+  - cmd: /mayhem/utf8_parse_response
+    libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/utf8-parse-response/testsuite
